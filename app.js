@@ -8,10 +8,10 @@
 
 // Event handling, user interaction is what starts the code execution.
 
-var taskInput=document.getElementById("new-task");//Add a new task.
+var taskInput=document.getElementById("main-page-element__task");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
 var incompleteTaskHolder=document.getElementById("todo");//ul of #todo
-var completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
+var completedTasksHolder=document.getElementById("todo__tasks");//todo__tasks
 
 
 //New task list item
@@ -61,7 +61,7 @@ var createNewTaskElement=function(taskString){
 
 var addTask=function(){
     console.log("Add Task...");
-    //Create a new list item with the text from the #new-task:
+    //Create a new list item with the text from the #main-page-element__task:
     if (!taskInput.value) return;
     var listItem=createNewTaskElement(taskInput.value);
 
@@ -85,11 +85,11 @@ var editTask=function(){
     var editInput=listItem.querySelector('input[type=text]');
     var label=listItem.querySelector("label");
     var editBtn=listItem.querySelector(".edit");
-    var containsClass=listItem.classList.contains("edit-mode");
-    //If class of the parent is .edit-mode
+    var containsClass=listItem.classList.contains("todo__edit__mode");
+    //If class of the parent is .todo__edit__mode
     if(containsClass){
 
-        //switch to .edit-mode
+        //switch to .todo__edit__mode
         //label becomes the inputs value.
         label.innerText=editInput.value;
         editBtn.innerText="Edit";
@@ -98,8 +98,8 @@ var editTask=function(){
         editBtn.innerText="Save";
     }
 
-    //toggle .edit-mode on the parent.
-    listItem.classList.toggle("edit-mode");
+    //toggle .todo__edit__mode on the parent.
+    listItem.classList.toggle("todo__edit__mode");
 };
 
 
@@ -119,7 +119,7 @@ var deleteTask=function(){
 var taskCompleted=function(){
     console.log("Complete Task...");
 
-    //Append the task list item to the #completed-tasks
+    //Append the task list item to the #todo__tasks
     var listItem=this.parentNode;
     completedTasksHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
